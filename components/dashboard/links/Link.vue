@@ -1,5 +1,4 @@
 <script setup>
-import { ref, computed, onMounted } from 'vue'
 import { CalendarPlus2, Copy, CopyCheck, Eraser, Hourglass, Link as LinkIcon, QrCode, SquareChevronDown, SquarePen } from 'lucide-vue-next'
 import { useClipboard } from '@vueuse/core'
 import { toast } from 'vue-sonner'
@@ -24,25 +23,7 @@ function getLinkHost(url) {
 }
 
 const shortLink = computed(() => `${origin}/${props.link.slug}`)
-const linkIcon = ref('')
-
-async function fetchFavicon(url) {
-  try {
-    const response = await fetch(`https://onlineminitools.com/website-favicon-downloader?url=${encodeURIComponent(url)}`)
-    const data = await response.json()
-    if (data.icons && data.icons.length > 0) {
-      linkIcon.value = data.icons[0].src
-    } else {
-      linkIcon.value = 'https://sink.cool/sink.png' // Fallback image
-    }
-  } catch (error) {
-    linkIcon.value = 'https://sink.cool/sink.png' // Fallback image
-  }
-}
-
-onMounted(() => {
-  fetchFavicon(props.link.url)
-})
+const linkIcon = computed(() => `https://unavatar.io/${getLinkHost(props.link.url)}?fallback=https://sink.cool/sink.png`)
 
 const { copy, copied } = useClipboard({ source: shortLink.value, copiedDuring: 400 })
 
