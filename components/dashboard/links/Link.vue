@@ -28,7 +28,7 @@ const linkIcon = ref('')
 
 async function fetchFavicon(url) {
   try {
-    const response = await fetch(`https://favicongrabber.com/api/grab/${getLinkHost(url)}`)
+    const response = await fetch(`https://onlineminitools.com/website-favicon-downloader?url=${encodeURIComponent(url)}`)
     const data = await response.json()
     if (data.icons && data.icons.length > 0) {
       linkIcon.value = data.icons[0].src
