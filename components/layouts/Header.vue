@@ -22,7 +22,7 @@ const showMenu = ref(false)
               class="flex items-center justify-center w-8 h-8 rounded-full"
             >
               <img
-                src="/icon-192.png"
+                src="/public/icon-192.png"
                 alt="Sink"
                 class="w-full h-full rounded-full"
               >
